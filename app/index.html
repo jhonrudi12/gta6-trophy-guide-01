@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida Platinum — GTA VI Trophy Guide &amp; Tracker</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header id="top">
+  <div class="brand">
+    <h1 id="app-title">Leonida Platinum</h1>
+    <p id="app-sub">Grand Theft Auto VI — all 55 PS5 trophies: guide, tracker &amp; road to the platinum. Works offline.</p>
+  </div>
+  <div class="progress" id="progress-box" aria-label="Platinum progress">
+    <div class="progress-numbers"><span id="earned-count">0 / 55</span><span id="earned-pct">0%</span></div>
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    <p id="grade-counts">1 platinum · 2 gold · 6 silver · 46 bronze · 28 hidden</p>
+  </div>
+</header>
+
+<nav id="main-nav" aria-label="Guide sections">
+  <button data-view="checklist" class="nav-btn active" id="nav-checklist">Checklist</button>
+  <button data-view="roadmap" class="nav-btn" id="nav-roadmap">Roadmap to Platinum</button>
+  <button data-view="missables" class="nav-btn" id="nav-missables">Missables</button>
+  <button data-view="about" class="nav-btn" id="nav-about">About &amp; Sources</button>
+</nav>
+
+<section id="toolbar" aria-label="Filters and save tools">
+  <input id="search" type="search" placeholder="Search trophies by name or description…" aria-label="Search trophies">
+  <div class="chip-row" id="kind-chips" role="group" aria-label="Filter by kind">
+    <button data-kind="all" class="chip active">All 55</button>
+    <button data-kind="story" class="chip">Story</button>
+    <button data-kind="missable" class="chip">Missable</button>
+    <button data-kind="collectibles" class="chip">Collectibles</button>
+    <button data-kind="activities" class="chip">Activities</button>
+    <button data-kind="online" class="chip">Online</button>
+  </div>
+  <div class="tool-row">
+    <label>Grade <select id="grade-filter"><option value="all">All grades</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
+    <label>Status <select id="status-filter"><option value="all">All</option><option value="earned">Earned</option><option value="remaining">Not earned</option></select></label>
+    <label class="spoiler-toggle"><input type="checkbox" id="spoiler-toggle"> Hide story spoilers</label>
+    <button id="export-btn" class="tool-btn">Export save</button>
+    <button id="import-btn" class="tool-btn">Import save</button>
+    <input type="file" id="import-file" accept="application/json,.json" hidden>
+    <button id="reset-btn" class="tool-btn danger">Reset progress</button>
+  </div>
+  <p id="filter-note"></p>
+</section>
+
+<main id="view">
+  <div id="list-col">
+    <p id="list-summary"></p>
+    <ul id="trophy-list"></ul>
+  </div>
+  <aside id="detail-pane" aria-label="Trophy guide detail">
+    <p id="detail-empty">Pick a trophy to read its guide and its sources.</p>
+    <div id="detail-body" hidden></div>
+  </aside>
+</main>
+
+<section id="roadmap-view" hidden></section>
+<section id="missables-view" hidden></section>
+<section id="about-view" hidden></section>
+
+<footer id="page-foot">
+  <p>Unofficial fan guide. Not affiliated with Rockstar Games. No official artwork, logos or game screenshots are used. Trophy names, descriptions and grades are PlayStation’s, via Exophase and PSNProfiles; guides are this site’s own words, with sources named beside each trophy.</p>
+  <p id="save-note">Progress is saved in this browser only (localStorage). Export a file to keep a backup or move it to another browser.</p>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
