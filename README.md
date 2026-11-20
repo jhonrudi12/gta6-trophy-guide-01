@@ -4,27 +4,44 @@
 [![rank](https://make.fun/badge/gta6-trophy-guide-01/jhonrudi12/gta6-trophy-guide-01/rank.svg)](https://make.fun/bounty/gta6-trophy-guide-01)
 [![reward](https://make.fun/badge/gta6-trophy-guide-01/jhonrudi12/gta6-trophy-guide-01/reward.svg)](https://make.fun/bounty/gta6-trophy-guide-01)
 
-An offline web app that guides you to the Grand Theft Auto VI platinum trophy: all 55 trophies (1 platinum, 2 gold, 6 silver, 46 bronze) with own-words guides, a 3-stage road to the platinum, a missables warning, and a spoiler-safe checklist that tracks your progress locally. Built for the [make.fun bounty "Build the best GTA 6 trophy guide"](https://make.fun/bounty/gta6-trophy-guide-01).
+An offline web app that guides you to the Grand Theft Auto VI platinum trophy on PlayStation 5: all 55 trophies (1 platinum, 2 gold, 6 silver, 46 bronze) with their official names, descriptions and grades, a guide in this app's own words for each one with its sources named beside it, a checklist tracker, a three-stage roadmap to the platinum, and a warning for the one potentially missable trophy. Built for the [make.fun bounty "Build the best GTA 6 trophy guide"](https://make.fun/bounty/gta6-trophy-guide-01).
 
 ## What it does
 
-- **55 trophies, verified:** names, descriptions and grades checked against the official list on Exophase and PSNProfiles on 2026-11-19 — 0 missing, 0 extra. Each trophy carries a guide in this app's own words with a named source (PowerPyx, GTA Zone, and others). The 5 trophies no published guide has confirmed yet are marked honestly as unconfirmed instead of inventing a location.
-- **Checklist + progress:** tick trophies off, see PSN rarity counters, filter by kind (story / missable / collectibles / activities), grade or status, and search. Progress lives in localStorage; export and import it, or load the demo seed.
-- **Spoiler-safe:** 28 hidden trophies stay covered until you earn them (or turn spoilers on).
-- **Roadmap:** a 3-stage plan — story (Chapters 1–5), the 100% Completion checklist, then Strangers & Freaks and cleanup — about 200 hours at difficulty 4/10, one playthrough, no New Game+ needed.
-- **Missables:** exactly one trophy is potentially missable — Positive Mental Attitude (the Chapter 1 meditation at Jason's house). Everything else can still be earned in free-roam after the story.
-- **Offline:** the app runs fully offline from its own static files; the only absolute URLs are 5 citation links in the trophy data.
+- **All 55 trophies, with sources:** every trophy shows its official name, description and grade, plus a guide written for this app and the sources each fact comes from — mainly PowerPyx's trophy guide and roadmap, cross-checked against PushSquare, KeenGamer and GameMapa. Where a guide is still unconfirmed (Fair Game's exact animal, and whether the Chapter 1 meditation is required), the app says so instead of inventing a step.
+- **Checklist tracker:** tick trophies off as you earn them; progress is saved in the browser (localStorage), and can be exported to a JSON file and imported back. Filter by kind (story, missable, collectibles, activities, side quests & open world, online, platinum), grade or status, and search by name or description. A "Load demo progress" button ticks off a sample set of 12 trophies to try the tracker.
+- **Spoiler-safe:** turning on "Hide story spoilers" covers the names, descriptions and guides of the 12 story trophies until you earn them.
+- **Roadmap to the platinum:** three stages — story in Chapters 1–5 (60–80 hours), the 100% Completion checklist (about 100 hours), then Strangers & Freaks and cleanup (about 10 hours) — about 200 hours in total at difficulty 4/10, one playthrough, no online trophies, no New Game+ needed (PowerPyx).
+- **Missables:** exactly one trophy is potentially missable — Positive Mental Attitude, whose Chapter 1 meditation at Jason's house can only be done before Chapter 1 ends. Everything else can still be earned in free-roam after the story.
 
-## Run it
+## Try it
 
-```bash
-# Regenerate app/ + screenshots/ + dossier.json (deterministic)
-mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
-
-# Serve the app and open it in desktop Chrome
-npx serve out/app   # or any static server pointed at out/app
+```sh
+node serve.ts
+# open http://localhost:8080
 ```
 
-Or open `app/index.html` from a static server directly — the app works fully offline, with no network requests.
+Hand it in with:
 
-All guides are this app's own words; no Rockstar Games logo or artwork is used.
+```sh
+mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+```
+
+## Files
+
+- `app/index.html`, `app/style.css` — the app shell and its own look (no Rockstar logo or artwork anywhere).
+- `app/app.js` — bootstrap: loads the data, wires the toolbar, views and hash routes.
+- `app/checklist.js` — renders the checklist rows, filters, search and spoiler masking.
+- `app/guide.js` — renders the selected trophy's guide panel with its sources.
+- `app/roadmap.js` — renders the roadmap stages, missables and platinum facts.
+- `app/progress.js` — localStorage progress, export/import and the demo seed.
+- `app/data/trophies.json` — the 55 trophies with official names, descriptions, grades, kinds, targets, guides and sources.
+- `app/data/roadmap.json` — the roadmap stages, missable notes and platinum facts.
+- `main.ts` — copies `app/` and `screenshots/` to the output directory and writes `dossier.json` with `buildDossier` from `vendor/makefun-frontend.ts`.
+- `serve.ts` — a small static server for local testing.
+- `screenshots/` — four real renders of the app in a browser (the first by name is the cover).
+
+## Notes
+
+- The app works with the network off: every script, stylesheet and data file it loads lives under `app/`. Source links are plain anchor links — the app fetches nothing itself.
+- Trophy names and descriptions are shown exactly as PlayStation publishes them, including the asterisks in "T**s Ass Drug Money". Everything else is written in this app's own words.
